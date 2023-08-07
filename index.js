@@ -60,3 +60,23 @@ var employee_tracker = function () {
                     employee_tracker();
                 });
             })
+        } else if (answers.prompt === 'Add A Role') {
+            // Beginning with the database so that we may acquire the departments for the choice
+            db.query(`SELECT * FROM department`, (err, result) => {
+                if (err) throw err;
+
+                inquirer.prompt([
+                    {
+                        // Adding A Role
+                        type: 'input',
+                        name: 'role',
+                        message: 'What is the name of the role?',
+                        validate: roleInput => {
+                            if (roleInput) {
+                                return true;
+                            } else {
+                                console.log('Please Add A Role!');
+                                return false;
+                            }
+                        }
+                    },
