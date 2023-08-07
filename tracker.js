@@ -36,3 +36,35 @@ function askQuestions() {
             case "view all employees":
                 viewEmployees()
                 break;
+                case "view all departments":
+                    viewDepartments()
+                    break;
+    
+                case "add employee":
+                    addEmployee()
+                    break;
+    
+                case "add department":
+                    addDepartment()
+                    break;
+    
+                case "add role":
+                    addRole()
+                    break;
+    
+                case "update employee role":
+                    updateEmployeeRole();
+                    break;
+                    default:
+                        connection.end()
+                        break;
+                }
+            })
+        }   
+
+function viewEmployees() {
+    connection.query("SELECT * FROM employee", function (err, data) {
+        console.table(data);
+        askQuestions();
+    })
+}
